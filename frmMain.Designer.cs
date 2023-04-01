@@ -86,6 +86,9 @@
             Controls.Add(progressConvert);
             Controls.Add(txtFolderPath);
             Controls.Add(btnSelectFolder);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmMain";
             Text = "Html 2 Pdf";
             statusStrip1.ResumeLayout(false);
