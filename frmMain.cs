@@ -23,8 +23,6 @@ namespace Html2Pdf
                     var outputPath = folderBrowser.SelectedPath;
                     var htmlFiles = Directory.GetFiles(txtFolderPath.Text, "*.html");
 
-                    var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
-
                     progressConvert.Maximum = htmlFiles.Length;
 
                     stepText.Text = $"0/{htmlFiles.Length}";
@@ -33,9 +31,17 @@ namespace Html2Pdf
                     {
                         foreach (var htmlFile in htmlFiles)
                         {
-                            string fileName = Path.GetFileNameWithoutExtension(htmlFile);
-                            htmlToPdf.GeneratePdfFromFile(htmlFile, null, $"{Path.Combine(outputPath, fileName + ".pdf")}");
-
+                            try
+                            {
+                                var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+                                string fileName = Path.GetFileNameWithoutExtension(htmlFile);
+                                htmlToPdf.GeneratePdfFromFile(htmlFile, null, $"{Path.Combine(outputPath, fileName + ".pdf")}");
+                                htmlToPdf = null;
+                            }
+                            catch (Exception exp)
+                            {
+                                MessageBox.Show(exp.Message);
+                            }
                             progressConvert.Value += 1;
                             stepText.Text = $"{progressConvert.Value}/{htmlFiles.Length}";
                         }

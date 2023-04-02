@@ -90,6 +90,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmMain";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Html 2 Pdf";
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
